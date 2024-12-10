@@ -24,9 +24,12 @@
     "bcrypt": "^5.1.1",
     "bcryptjs": "^2.4.3",
     "core-util-is": "^1.0.3",
+    "cors": "^2.8.5",
     "express": "^4.21.1",
     "jsonwebtoken": "^9.0.2",
+    "jwt-decode": "^4.0.0",
     "mongoose": "^8.7.1",
+    "multer": "^1.4.5-lts.1",
     "rxjs": "~7.8.0",
     "tslib": "^2.3.0",
     "webpack-dev-server": "^4.15.1",
@@ -48,3 +51,7 @@
     "typescript": "~5.0.2"
   }
 }
+
+
+
+

@@ -7,15 +7,14 @@
     border-radius: 10px;
     height: 320px;
     width: 234px;
-    margin-left: 50px;
-    margin-top: 30px;
-    margin-bottom: 10px;
 }
-.container .img-container{
+
+.container .img-container {
     margin-top: 10px;
 }
 
 .container .img-container img {
+    cursor: pointer;
     width: 202px;
     height: 172px;
 }
@@ -25,6 +24,7 @@
     font-size: 12px;
     font-weight: 500;
     text-decoration: underline;
+    cursor: pointer;
 }
 
 .container .details {
@@ -65,4 +65,15 @@
     text-transform: uppercase;
     border-bottom-right-radius: 10px;
     border-bottom-left-radius: 10px;
+}
+
+.container .details .number input {
+    text-align: center;
+    width: 75px;
+    height: 25px;
+    border: var(--gray) 2px solid;
+    margin-bottom: 5px;
+    margin-left: 15px;
+    border-radius: 5px;
+    background-color: transparent;
 }

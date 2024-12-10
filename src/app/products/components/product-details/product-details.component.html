@@ -3,29 +3,31 @@
     <section class="top">
         <div class="left">
             <figure>
-                <img src="{{data.pictures}}" alt="">
+                <img [src]="data.picture" alt="">
             </figure>
         </div>
         <div class="right">
             <div class="details">
                 <h1>{{data.name}}</h1>
-                <span class="dark-gray">Shop Name: {{data.linkedShop}} </span>
-                <span class="dark-gray">Availability: {{data.availability}} </span>
-                <span class="dark-gray">Category: {{data.Category}} </span>
-                <span class="price">${{data.price}}</span>
+                <span class="dark-gray">Shop Name: </span>
+                <span class="dark-gray">Availability: {{data.availability ? 'In stock' : 'Out of stock'}} </span>
+                <span class="dark-gray">Category: {{data.category}} </span>
+                <span class="price">{{data.price}} S.P</span>
             </div>
             <hr>
             <div class="actions">
-                <button class="add-wish"><mat-icon>favorite</mat-icon>Add to Wishlist</button> <br>
-                <input type="number" class="down">
-                <button class="add-cart down">Add to cart <mat-icon>shopping_cart</mat-icon></button>
+                <button class="add-wish" (click)="addto_wishlist()"><mat-icon>favorite</mat-icon>Add to
+                    Wishlist</button> <br>
+                <input type="number" class="down" [(ngModel)]="amount">
+                <button class="add-cart down" (click)="addto_Cart()">Add to cart
+                    <mat-icon>shopping_cart</mat-icon></button>
             </div>
         </div>
     </section>
     <section class="bottom">
-        <label>description</label>
+        <label>Description</label>
         <hr>
-        <input class="description" value="{{data.description}}" readonly>
+        <textarea class="description" value="{{data.description}}" readonly></textarea>
     </section>
 </main>
 <app-footer></app-footer>

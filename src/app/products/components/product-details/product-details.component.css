@@ -159,16 +159,18 @@ main .bottom label {
     margin-left: 50px;
 }
 
-main .bottom input {
+main .bottom textarea {
     border: none;
     border-radius: 2px;
     width: 600px;
     height: 228px;
     margin-left: 50px;
     margin-top: 35px;
+    line-height: 24px;
+    text-align: justify;
 }
 
-main .bottom input::placeholder {
+main .bottom textarea::placeholder {
     color: var(--mid-gray);
     font-size: 14px;
     line-height: 20px;

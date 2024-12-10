@@ -1,32 +1,37 @@
-import { Component, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { ProductserviceService } from 'src/app/products/services/productservice.service';
-import { ShopServiceService } from '../../services/shop-service.service';
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
+  constructor(private route: ActivatedRoute,
+    private productsService: ProductserviceService,) { }
 
-  constructor(private Products_service: ProductserviceService, private shop_servive: ShopServiceService) { }
-  @Input() shopProducts: any[] = [];
-  name: any = {}
+  shopProducts: any[] = [];
+  name: any = {};
+  selectedShopId: string = '';
+  shopName: string = '';
 
   ngOnInit(): void {
-    this.getShopByID_Here();
-    this.getShopProducts_Here();
+    this.selectedShopId = this.route.snapshot.paramMap.get('id') || '';
+    console.log('Captured Shop ID:', this.selectedShopId); // Log to verify captured shop ID
+    if (this.selectedShopId) {
+      this.getPublicShop_Here(this.selectedShopId);
+    }
   }
 
-  getShopByID_Here() {
-    this.Products_service.getShopByID(this.name).subscribe(res => {
-      this.name = res
-    })
-  }
-
-  getShopProducts_Here() {
-    this.shop_servive.getShopProducts(this.name).subscribe((res: any) => {
-      this.shopProducts = res;
+  getPublicShop_Here(shopId: string) {
+    console.log('Fetching shop profile for ID:', shopId); // Log to verify the shopId before making the API call
+    this.productsService.getPublicShopProfile(shopId).subscribe((res: any) => {
+      this.name = res;
+      this.shopName = res.name;
+      this.shopProducts = res.products;
+    }, error => {
+      console.error('Error fetching shop profile:', error);
     });
   }
 }

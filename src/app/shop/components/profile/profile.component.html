@@ -14,9 +14,9 @@
         </div>
     </div>
 </section>
-<section>
+<section class="shops-products">
     <div class="products" *ngFor=" let item of shopProducts">
-        <app-product [shopProducts]="item" routerLink="/product-details/{{item.id}}"></app-product>
+        <app-product [product]="item" routerLink="/product-details/{{item.id}}"></app-product>
     </div>
 </section>
 <app-footer></app-footer>

@@ -1,9 +1,12 @@
+
 <app-header></app-header>
+
 <div class="container">
     <form [formGroup]="signupForm">
         <div class="spans">
-            <span routerLink="/signup">Private</span>
-            <span routerLink="/shop-signup">Business</span>
+            <span routerLink="/signup" routerLinkActive="active1"
+                [routerLinkActiveOptions]="{ exact: true }">Private</span>
+            <span routerLink="/shop-signup" routerLinkActive="active2">Business</span>
         </div>
         <div class="inputs">
             <label for="fullname">FullName</label>
@@ -34,13 +37,21 @@
                     is required</small>
             </div>
             <label for="pass">Password</label>
-            <input type="password" formControlName="pass" id="pass" placeholder="8+ characters">
+            <div class="input-icon">
+                <input [type]="showPassword ? 'text' : 'password'" type="password" formControlName="pass" id="pass"
+                    placeholder="8+ characters">
+                <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
+            </div>
             <div class="small">
                 <small *ngIf="signupForm.get('pass')?.errors?.['required'] && signupForm.get('pass')?.dirty">Password
                     is required</small>
             </div>
             <label for="confirmpass">Confirm Password</label>
-            <input type="password" formControlName="confirmpass" id="confirmpass">
+            <div class="input-icon">
+                <input [type]="showPassword ? 'text' : 'password'" type="password" formControlName="confirmpass"
+                    id="confirmpass">
+                <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
+            </div>
             <div class="small">
                 <small
                     *ngIf="signupForm.get('confirmpass')?.errors?.['required'] && signupForm.get('confirmpass')?.dirty">Confirm
@@ -51,11 +62,12 @@
                     Passwords do not </small>
             </div>
             <button [disabled]="signupForm.invalid || (signupForm.value.pass ==! signupForm.value.confirmpass)"
-                (click)="Submit1()">Create Private Account<mat-icon>arrow_forward</mat-icon></button>
-
+                [ngStyle]="getButtonStyles()" (click)="Submit1()" class="submit">Create Private
+                Account<mat-icon>arrow_forward</mat-icon></button>
             <div class="create">
                 <span> or <br></span>
-                <button>Already have account?<a routerLink="/login">login</a> </button>
+                <button>Already have account?<a routerLink="/login">login <mat-icon>arrow_forward</mat-icon></a>
+                </button>
             </div>
         </div>
     </form>

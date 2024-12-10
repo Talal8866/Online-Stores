@@ -8,40 +8,39 @@ export class ProductserviceService {
   constructor(private http: HttpClient) { }
 
   getAllCategories() {
-    return this.http.get('http://localhost:3000/api/categories'); // done
+    return this.http.get('http://localhost:3000/api/categories');
   }
 
-  // products services:
   getProducts() {
-    return this.http.get('http://localhost:3000/api/products'); // done
+    return this.http.get('http://localhost:3000/api/products/all');
   }
 
   getProducts_byCategories(keyWord: string) {
-    return this.http.get('http://localhost:3000/api/' + keyWord);
+    return this.http.get(`http://localhost:3000/api/products/list/${keyWord}`);
   }
 
-  getProductByID(id: any) {
-    const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`); //done
-    return this.http.get(`http://localhost:3000/api/products/${id}`, { headers });
+  getProductByID(id: string) {
+    return this.http.get(`http://localhost:3000/api/products/get/${id}`);
   }
 
-  // shops services:
   getShops() {
-    return this.http.get('http://localhost:3000/api/shops'); // done
+    return this.http.get('http://localhost:3000/api/shops');
   }
 
   getShops_byCategories(keyWord: string) {
-    return this.http.get('http://localhost:3000/api/shops' + keyWord);
+    return this.http.get(`http://localhost:3000/api/shops/categories/${keyWord}`);
   }
 
-  getShopByID(name: String) {
+  getPublicShopProfile(shopId: string) {
+    return this.http.get(`http://localhost:3000/api/shops/${shopId}`);
+  }
+
+  getShopByID() {
     const headers = new HttpHeaders().set('Authorization', `Bearer ${this.getToken()}`);
-    return this.http.get(`http://localhost:3000/api/shops/profile?name=${name}`, { headers }); //done
+    return this.http.get(`http://localhost:3000/api/shops/profile`, { headers });
   }
 
-  // getting Token for products(id) and shops(id)
   getToken() {
     return localStorage.getItem('token');
   }
-
 }

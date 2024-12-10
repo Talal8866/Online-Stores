@@ -10,6 +10,8 @@ const shopSchema = new mongoose.Schema({
     required: true,
     unique: true,
     match: /.+\@.+\..+/,
+    trim: true,
+    lowercase: true,
   },
   password: {
     type: String,
@@ -25,12 +27,12 @@ const shopSchema = new mongoose.Schema({
   },
   shopCategory: {
     type: String,
-    enum: ['OPTION1', 'OPTION2', 'OPTION3'],
     required: true,
+    lowercase: true,
+    trim: true,
   },
   description: {
     type: String,
-    required: true,
   },
   socialMediaLinks: {
     type: [String],
@@ -47,8 +49,11 @@ const shopSchema = new mongoose.Schema({
     default: 0,
   },
   owners: {
-    type: [String],
-    required: true,
+    type: String,
+  },
+  tokenVersion: {
+    type: Number,
+    default: 0,
   },
 });
 
@@ -60,6 +65,13 @@ shopSchema.methods.calculateAverageRating = function() {
     this.averageRating = (total / this.ratings.length).toFixed(1); // Round to one decimal place
   }
 };
+
+shopSchema.pre('save', function(next) {
+  if (this.shopCategory) {
+    this.shopCategory = this.shopCategory.toLowerCase();
+  }
+  next();
+});
 
 const Shop = mongoose.model('Shop', shopSchema);
 module.exports = Shop;

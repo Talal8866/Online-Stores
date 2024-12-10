@@ -15,8 +15,6 @@ import { AllShopsComponent } from './components/all-shops/all-shops.component';
   imports: [
     CommonModule,
     SharedModule,
-
-    
   ],
   exports: [
     ProfileComponent,

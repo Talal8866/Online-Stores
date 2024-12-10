@@ -18,6 +18,7 @@
 .container form .spans {
     display: flex;
     justify-content: space-around;
+    border-bottom: var(--gray) 1px solid;
     align-items: center;
     font-weight: 600;
     width: 422px;
@@ -25,15 +26,16 @@
     margin-bottom: 20px;
 }
 
-.container form .spans:first-child {
-    border-bottom: var(--pink) 3.5px solid;
-}
-
 .container form .spans span {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--custom-black);
     font-size: 20px;
     line-height: 28px;
     cursor: pointer;
+    width: 212px;
+    height: 60px;
 }
 
 .container form .inputs {
@@ -41,7 +43,6 @@
     flex-direction: column;
     height: 656px;
     margin-left: 30px;
-    row-gap: 7px;
 }
 
 .container form .inputs button {
@@ -63,11 +64,16 @@
     margin-bottom: 20px;
 }
 
+.container form .inputs .submit{
+    margin-top: 20px;
+}
+
 input {
     border: 1px solid var(--gray);
     border-radius: 2px;
     width: 360px;
     height: 44px;
+    margin-bottom: 15px;
 }
 
 label {
@@ -75,29 +81,29 @@ label {
     font-size: 14px;
     line-height: 20px;
     font-weight: 500;
+    margin-bottom: 5px;
 }
 
-input::content{
+input::content {
     padding-left: 10px;
 }
 
-.small{
+.small {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-small{
+small {
     color: firebrick;
     margin-left: -30px;
 }
 
-.container .shop .inputs select{
+.container .shop .inputs select {
     border: 1px solid var(--gray);
     width: 360px;
     height: 44px;
 }
-
 
 .container form .inputs .create {
     display: flex;
@@ -120,6 +126,9 @@ small{
 }
 
 .container form .inputs .create button a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
     color: var(--maincolor);
     font-weight: 900;
 }
@@ -136,4 +145,19 @@ input[type="number"]::-webkit-inner-spin-button,
 input[type="number"]::-webkit-outer-spin-button {
     -webkit-appearance: none;
     margin: 0;
+}
+
+.spans span.active1 {
+    border-bottom: 2.5px solid var(--pink);
+}
+
+.container form .inputs .show {
+    cursor: pointer;
+    color: var(--dark-gray);
+    background: none;
+    width: 30px;
+    height: 30px;
+    position: relative;
+    right: 40px;
+    top: 14px;
 }

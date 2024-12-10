@@ -113,6 +113,22 @@
     margin-bottom: 40px;
 }
 
+.main .right .bottomform form .input-icon{
+    position: relative;
+
+}
+
+.main .right .bottomform form .show{
+    cursor: pointer;
+    color: var(--dark-gray);
+    background: none;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 30px;
+    top: 10px;
+}
+
 .main .right .bottomform span {
     display: flex;
     align-items: center;

@@ -1,31 +1,27 @@
 <app-header></app-header>
-<div class="top">
+<section class="maincontainer top">
     <aside class="left">
         <nav>
             <ul>
-                <!-- <li routerLink="/cart-details"><mat-icon>shopping_cart</mat-icon>Shopping Cart</li> -->
-                <!-- <li routerLink="/wishlist"><mat-icon>favorite</mat-icon>wishlist</li> -->
-                <li><mat-icon>settings</mat-icon><a href="/client-details">setting</a></li>
+                <li routerLink="/client-details"><mat-icon>settings</mat-icon>setting</li>
                 <li (click)="logout()"><mat-icon>logout</mat-icon>log out</li>
             </ul>
         </nav>
     </aside>
-    <div class="maincontainer">
-        <div class="landing">
-            <div class="container">
-                <div class="img">
-                    <img src="{{name.logo}}" alt="">
-                </div>
-                <div class="details">
-                    <h1>{{name.name}}</h1>
-                    <p>{{name.description}}</p>
-                    <span> <mat-icon>mail</mat-icon>{{name.email}}</span>
-                    <span> <mat-icon>call</mat-icon>{{name.phoneNumber}}</span>
-                </div>
+    <div class="landing">
+        <div class="container">
+            <div class="img">
+                <img src="{{name.logo}}" alt="">
+            </div>
+            <div class="details" [formGroup]="changedescForm">
+                <h1>{{name.name}}</h1>
+                <input value="{{name.description}}" formControlName="newdesc">
+                <span> <mat-icon>mail</mat-icon>{{name.email}}</span>
+                <span> <mat-icon>call</mat-icon>{{name.phoneNumber}}</span>
             </div>
         </div>
     </div>
-</div>
+</section>
 
 <section class="products">
     <div class="add-product">
@@ -33,9 +29,9 @@
         <span routerLink="/add-product">add a product</span>
     </div>
     <div class="product-container" *ngFor=" let item of shopProducts">
-        <button class="edit" routerLink="/update-product"><mat-icon>edit</mat-icon></button>
+        <button class="edit" [routerLink]="['/update-product', item._id]"><mat-icon>edit</mat-icon></button>
         <button class="delete" (click)="delete_Product(item)"><mat-icon>close</mat-icon></button>
-        <app-product [shopProducts]="item" routerLink="/product-details/{{item.id}}"></app-product>
+        <app-product [product]="item" routerLink="/product-details/{{item._id}}"></app-product>
     </div>
 </section>
 
@@ -48,13 +44,13 @@
                 <label for="shopname">Shopname</label>
                 <input type="text" formControlName="shopname" id="shopname" value="{{name.name}}">
                 <label for="shopcategory">Shop Category</label>
-                <input type="text" formControlName="shopcategory" id="shopcategory" value="{{name.shopCategory}}">
+                <input type="text" formControlName="shopcategory" id="shopcategory" value="{{name.category}}">
                 <label for="email">Email Address</label>
                 <input type="email" formControlName="email" id="email" value="{{name.email}}">
                 <label for="address">Address</label>
                 <input type="text" formControlName="address" id="address" value="{{name.address}}">
                 <label for="number">Phone Number</label>
-                <input type="number" formControlName="number" id="number" value="{{name.phoneNumber}}">
+                <input type="text" formControlName="number" id="number" value="{{name.phoneNumber}}">
                 <button [disabled]="editprofileForm.invalid" (click)="Submit_Changes()">save changes</button>
             </form>
         </div>
@@ -63,11 +59,25 @@
             <hr>
             <form [formGroup]="changepassForm">
                 <label for="currentPassword">Current Password</label>
-                <input type="password" formControlName="currentPassword" id="currentPassword">
+                <div class="input-icon">
+                    <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
+                    <input type="password" [type]="showPassword ? 'text' : 'password'" formControlName="currentPassword"
+                        id="currentPassword" value="{{name.password}}">
+                </div>
+
                 <label for="pass">Password</label>
-                <input type="password" formControlName="newpass" id="pass" placeholder="8+ Characters">
+                <div class="input-icon">
+                    <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
+                    <input type="password" [type]="showPassword ? 'text' : 'password'" formControlName="newpass"
+                        id="pass" placeholder="8+ Characters">
+                </div>
+
                 <label for="confirmpass">Confirm Password</label>
-                <input type="password" formControlName="confirmpass" id="confirmpass">
+                <div class="input-icon">
+                    <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
+                    <input type="password" [type]="showPassword ? 'text' : 'password'" formControlName="confirmpass"
+                        id="confirmpass">
+                </div>
                 <button
                     [disabled]="changepassForm.invalid || (changepassForm.value.newpass ==! changepassForm.value.confirmpass)"
                     (click)="Submit_pass()">change password

@@ -1,12 +1,9 @@
-<div class="container" *ngFor="let item of shops">
+<div class="container">
     <div class="img-container">
-        <!-- <img src="{{item.image}}" alt="">
-        <span><br>{{item.shop}}</span> -->
-    </div>
-
-    <div class="details">
-        <!-- <p>{{item.name}}</p>
-        <span>{{item.price}}</span>
-        <button>add to cart</button> -->
+        <img [src]="getImagePath(shop.logo)" alt="" [routerLink]="'/profile/' + shop._id">
+        <div>
+            <h3>{{shop.name}}</h3>
+            <p>{{shop.description}}</p>
+        </div>
     </div>
 </div>

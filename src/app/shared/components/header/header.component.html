@@ -1,22 +1,39 @@
 <header class="container">
-    <nav class="header-nav">
-        <span class="logo">
-            <a routerLink="/">Clicon</a>
-        </span>
-        <input type="search" placeholder="Search for anything...">
-        <ul class="icons">
-            <li *ngIf="currentUser" routerLink="/cart-details"><mat-icon>shopping_cart</mat-icon>your cart</li>
-            <li *ngIf="!currentUser" routerLink="/login"><mat-icon>login</mat-icon>login</li>
-            <li *ngIf="currentUser"><mat-icon>person</mat-icon></li>
-            <li *ngIf="currentUser" routerLink="/client-details">{{currentUser?.fullname}}</li>
-        </ul>
-    </nav>
-    <nav class="bellow-nav">
-        <ul>
-            <li routerLink="/">Home</li>
-            <li><a href="#shops">Shops</a></li>
-            <li><a href="#shop-now">Products</a></li>
-            <li routerLink="/about-us">About Us</li>
-        </ul>
-    </nav>
+  <nav class="header-nav">
+    <span class="logo">
+      <img src="../../../../assets/png/Blue_and_Orange_Minimal_Typography_Online_Shop_E_commerce_Logo_1.png" alt=""
+        routerLink="/">
+    </span>
+    <input type="search" placeholder="Search for anything..." (input)="onSearch($event)">
+    <ul class="icons">
+      <mat-icon class="search" (click)="onSearch($event)">search</mat-icon>
+      <li *ngIf="!currentUser" routerLink="/login"><mat-icon>login</mat-icon>login</li>
+
+      <li *ngIf="isClient" routerLink="/cart-details"><mat-icon>shopping_cart</mat-icon></li>
+      <li *ngIf="isClient" routerLink="/wishlist"><mat-icon>favorite</mat-icon></li>
+      <li *ngIf="isShopOwner" routerLink="/edit-profile" class="name"><mat-icon>person</mat-icon>{{shop.name}}</li>
+      <li *ngIf="isClient" routerLink="/client-details" class="name"><mat-icon>person</mat-icon>{{user.name}}</li>
+    </ul>
+  </nav>
+  <nav class="bellow-nav">
+    <ul>
+      <li routerLink="/">Home</li>
+      <li><a href="#shops">Shops</a></li>
+      <li><a href="#shop-now">Products</a></li>
+      <li routerLink="/about-us">About Us</li>
+    </ul>
+  </nav>
+
+  <div class="search-results" *ngIf="searchResults.length > 0">
+    <h2>Search Results:</h2>
+    <ul>
+      <li *ngFor="let result of searchResults">
+        <hr>{{ result.name }}
+      </li>
+    </ul>
+  </div>
+  <div class="search-error" *ngIf="searchError">
+    {{ searchError }}
+  </div>
+
 </header>

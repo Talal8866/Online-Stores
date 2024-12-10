@@ -4,7 +4,6 @@ import { SignupComponent } from './components/signup/signup.component';
 import { LoginComponent } from './components/login/login.component';
 import { SharedModule } from '../shared/shared.module';
 import { ReactiveFormsModule } from '@angular/forms';
-// import { MatIconModule } from '@angular/material/icon';
 import { ShopSignupComponent } from './components/shop-signup/shop-signup.component';
 
 
@@ -18,7 +17,6 @@ import { ShopSignupComponent } from './components/shop-signup/shop-signup.compon
     CommonModule,
     SharedModule,
     ReactiveFormsModule,
-    // MatIconModule
   ],
   exports: [
     LoginComponent,

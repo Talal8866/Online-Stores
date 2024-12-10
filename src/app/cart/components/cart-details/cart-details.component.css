@@ -188,10 +188,6 @@ input[type="number"]::-webkit-outer-spin-button {
     width: 203px;
 }
 
-.main .right .cart .actions .update {
-    width: 147px;
-}
-
 .main .right .totals {
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
     background-color: var(--custom-white);

@@ -1,52 +1,107 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { ShopServiceService } from 'src/app/shop/services/shop-service.service';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ProductserviceService } from '../../services/productservice.service';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-update-product',
   templateUrl: './update-product.component.html',
   styleUrls: ['./update-product.component.css']
 })
-export class UpdateProductComponent {
-  constructor(private shop_service: ShopServiceService) { }
+export class UpdateProductComponent implements OnInit {
+  constructor(
+    private shop_service: ShopServiceService,
+    private product_service: ProductserviceService,
+    private route: ActivatedRoute) { }
 
   updateProductForm!: FormGroup;
-  @Input() name: any;
-  base64: any = '';
+  @Input() products: any = {};
+
+  imageUrl: string | ArrayBuffer | null = null;
+  fileToUpload: File | null = null;
+  _id: string | null = '';
+  data: any = {};
 
   ngOnInit(): void {
     this.updateProductForm = new FormGroup({
-      productname: new FormControl(),
-      availability: new FormControl(),
-      price: new FormControl(),
-      description: new FormControl(),
-      image: new FormControl(this.base64 = this.name.pictures),
-      quantity: new FormControl(),
-    })
+      productname: new FormControl(null, Validators.required),
+      price: new FormControl(null, Validators.required),
+      description: new FormControl(null, Validators.required),
+      category: new FormControl(null, Validators.required),
+      availability: new FormControl(null, Validators.required),
+      // quantity: new FormControl(null, [Validators.required, Validators.min(1)])
+    });
+
+    this._id = this.route.snapshot.paramMap.get('productId');
+    console.log('Captured ID:', this._id); 
+    if (this._id) {
+      this.getProductByID_Here(this._id);
+    } else {
+      console.error('Product ID is undefined');
+    }
+  }
+
+  getProductByID_Here(id: string) {
+    this.product_service.getProductByID(id).subscribe(res => {
+      this.data = res;
+
+      this.updateProductForm.patchValue({
+        productname: this.data.name,
+        price: this.data.price,
+        description: this.data.description,
+        category: this.data.category,
+        availability: this.data.availability,
+        // quantity: this.data.quantity
+      });
+
+      if (this.data.picture) {
+        this.imageUrl = `http://localhost:3000/uploads/${this.data.picture}`;
+      }
+    }, error => {
+      console.error('Error fetching product details:', error);
+    });
   }
 
   submitUpdate() {
     const model = {
       name: this.updateProductForm.value.productname,
-      availability: this.updateProductForm.value.availability,
-      description: this.updateProductForm.value.description,
       price: this.updateProductForm.value.price,
-      pictures: this.updateProductForm.value.image,
-      quantity: this.updateProductForm.value.quantity
+      description: this.updateProductForm.value.description,
+      category: this.updateProductForm.value.category,
+      availability: this.updateProductForm.value.availability,
+      // quantity: this.updateProductForm.value.quantity
+    };
+
+    const formData: FormData = new FormData();
+    formData.append('productData', JSON.stringify(model));
+    if (this.fileToUpload) {
+      formData.append('picture', this.fileToUpload, this.fileToUpload.name);
     }
-    this.shop_service.updateProduct(this.name, model).subscribe((res: any) => {
-      res = alert("your product update successfully")
-    })
+
+    this.shop_service.updateProduct(formData).subscribe(
+      (res: any) => {
+        alert("Your product updated successfully");
+      },
+      (error: any) => {
+        console.error('Error updating product:', error);
+      }
+    );
   }
 
+  onFileSelected(event: Event): void {
+    const input = event.target as HTMLInputElement;
+    if (input.files && input.files[0]) {
+      const file = input.files[0];
+      this.fileToUpload = file;
 
-  getimagepath(event: any): void {
-    const file = event.target.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      this.base64 = reader.result
-      this.updateProductForm.get('image')?.setValue(this.base64)
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        if (e.target?.result) {
+          this.imageUrl = e.target.result;
+        }
+      };
+      reader.readAsDataURL(file);
     }
   }
 }

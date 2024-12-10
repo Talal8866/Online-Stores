@@ -11,15 +11,13 @@ const categoryRoutes = require('./routes/category.routes');
 const cartRoutes = require('./routes/cart.routes');
 
 const app = express();
-
+const PORT = process.env.PORT;
 const corsOptions = {
     origin: 'http://localhost:4200',
     credentials: true
 };
 
 app.use(cors(corsOptions));
-
-const PORT = process.env.PORT;
 
 // Middleware to parse JSON requests
 app.use(express.json());

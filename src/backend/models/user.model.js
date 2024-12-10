@@ -11,6 +11,7 @@ const userSchema = new Schema({
     type: String,
     required: true,
     unique: true,
+    match: /.+\@.+\..+/,
     trim: true,
     lowercase: true,
   },
@@ -37,6 +38,10 @@ const userSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Product',
   }],
+  tokenVersion: {
+    type: Number,
+    default: 0,
+  },
 });
 
 const User = mongoose.model('User', userSchema);

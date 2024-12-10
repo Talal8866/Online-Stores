@@ -7,8 +7,7 @@ import { AuthServiceService } from 'src/app/auth/services/auth.service.service';
   styleUrls: ['./cart-details.component.css']
 })
 export class CartDetailsComponent {
-
-  constructor(private service: AuthServiceService) { }
+  constructor(private service_auth: AuthServiceService) { }
 
   cart_products: any[] = [];
   Shipping: any = 30;
@@ -16,28 +15,30 @@ export class CartDetailsComponent {
   total: any = 0;
   tax: any = 0
 
-  @Input() type: string = "User"
+  @Input() type: string = "user"
 
   ngOnInit(): void {
     this.getCartProducts()
   }
 
   logout() {
-    const model = {};
-
-    if (this.type === 'User') {
-      this.service.loginuser_service(model).subscribe(
+    if (this.type === 'user') {
+      this.service_auth.logoutuser_service().subscribe(
         (res: any) => {
-          this.service.user.next(res);
+          alert("You have logged out");
+          this.service_auth.setCurrentUser(null); // Clear current user
+          console.log(res);
         },
         (error: any) => {
           console.error('Error during user logout:', error);
         }
       );
     } else {
-      this.service.loginshop_service(model).subscribe(
+      this.service_auth.logoutshop_service().subscribe(
         (res: any) => {
-          this.service.user.next(res);
+          alert("You have logged out");
+          this.service_auth.setCurrentUser(null); // Clear current user
+          console.log(res);
         },
         (error: any) => {
           console.error('Error during shop logout:', error);

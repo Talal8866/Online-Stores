@@ -9,7 +9,6 @@
     display: flex;
     column-gap: 50px;
     margin-top: 110px;
-    margin-left: 50px;
 }
 
 .top .left {
@@ -19,10 +18,10 @@
     justify-content: center;
     border: var(--gray) 1px solid;
     border-radius: 4px;
-    height: 191px;
+    height: 112px;
     width: 264px;
     padding-left: 20px;
-    margin-top: 20px;
+    margin-top: 40px;
 }
 
 .top .left nav ul {
@@ -82,6 +81,7 @@
 
 .main .right .topform form input {
     border: var(--gray) 1px solid;
+    text-transform: capitalize;
     border-radius: 1px;
     height: 44px;
     width: 939px;
@@ -116,6 +116,23 @@
     border-radius: 4px;
     width: 984px;
     height: 390px;
+}
+
+
+.main .right .bottomform form .input-icon {
+    position: relative;
+
+}
+
+.main .right .bottomform form .show {
+    cursor: pointer;
+    color: var(--dark-gray);
+    background: none;
+    position: absolute;
+    width: 30px;
+    height: 30px;
+    right: 30px;
+    top: 10px;
 }
 
 .main .right .bottomform span {
@@ -212,7 +229,6 @@ input[type="number"]::-webkit-outer-spin-button {
 .maincontainer {
     display: flex;
     justify-content: center;
-    align-items: center;
 }
 
 .maincontainer .landing {
@@ -232,20 +248,6 @@ input[type="number"]::-webkit-outer-spin-button {
     margin-top: 30px;
 }
 
-.maincontainer .landing .container .img {
-    border: 1px solid var(--pink);
-    border-radius: 50%;
-    width: 250px;
-    height: 250px;
-}
-
-.maincontainer .landing .container .img img {
-    width: 250px;
-    height: 250px;
-    overflow: hidden;
-    border-radius: 50%;
-}
-
 .maincontainer .landing .container .details {
     display: flex;
     flex-direction: column;
@@ -257,16 +259,20 @@ input[type="number"]::-webkit-outer-spin-button {
     font-weight: 900;
     font-size: 40px;
     line-height: 59px;
-    width: 263px;
+    width: 563px;
     height: 59px;
 }
 
 .maincontainer .landing .container .details input {
-    font-size: 24px;
-    line-height: 34px;
-    color: var(--dark-gray);
+    border: 1px solid var(--gray);
+    color: var(--mid-gray);
+    border-radius: 2px;
+    font-size: 14px;
+    line-height: 20px;
     margin-top: 10px;
-    font-weight: 200;
+    font-weight: 400;
+    width: 640px;
+    height: 150px;
 }
 
 .maincontainer .landing .container .details span {
@@ -280,20 +286,20 @@ input[type="number"]::-webkit-outer-spin-button {
 }
 
 .products {
-    display: flex;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
     align-items: center;
-    column-gap: 100px;
-    margin-left: 50px;
-    margin-bottom: 40px;
-    margin-top: 40px;
+    column-gap: 30px;
+    row-gap: 60px;
+    margin-bottom: 100px;
+    margin-left: 60px;
 }
 
-section .add-product {
+.add-product {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    row-gap: 10px;
     width: 234px;
     height: 320px;
     background-color: #dceef9;
@@ -302,14 +308,15 @@ section .add-product {
     color: var(--dark-maincolor);
     font-size: 20px;
     font-weight: 700;
+    margin-top: 60px;
     text-transform: uppercase;
 }
 
-section .add-product span {
+.add-product span {
     cursor: pointer;
 }
 
-section .add-product mat-icon {
+.add-product mat-icon {
     cursor: pointer;
     font-weight: 900;
 }
@@ -319,7 +326,6 @@ section .add-product mat-icon {
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    border: var(--gray) solid 2px;
     border-radius: 10px;
     height: 320px;
     width: 234px;
@@ -331,11 +337,11 @@ section .add-product mat-icon {
     color: var(--pink);
     cursor: pointer;
     position: relative;
-    right: 101px;
-    top: 32px;
+    right: 104px;
+    top: 50px;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
 }
 
 .product-container .delete {
@@ -344,9 +350,52 @@ section .add-product mat-icon {
     color: var(--pink);
     cursor: pointer;
     position: relative;
-    left: 101px;
-    top: 3px;
+    left: 104px;
+    top: 25px;
     border-radius: 50%;
-    width: 30px;
-    height: 30px;
+    width: 25px;
+    height: 25px;
+}
+
+.top .maincontainer .landing .container .img label {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    left: 180px;
+    bottom: 60px;
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+    background-color: var(--pink);
+    color: var(--custom-black);
+    cursor: pointer;
+    font-size: 40px;
+}
+
+.top .maincontainer .landing .container .img .Selected-img {
+    position: absolute;
+    bottom: 1px;
+    right: 1px;
+    z-index: -1
+}
+
+.maincontainer .landing .container .img {
+    position: relative;
+    border: 1px solid var(--pink);
+    border-radius: 50%;
+    width: 250px;
+    height: 250px;
+}
+
+.maincontainer .landing .container .img img {
+    width: 250px;
+    height: 250px;
+    overflow: hidden;
+    border-radius: 50%;
+}
+
+.all-products {
+    display: flex;
+    width: 1500px;
 }

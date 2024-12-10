@@ -5,7 +5,7 @@
             <ul>
                 <li routerLink="/cart-details"><mat-icon>shopping_cart</mat-icon>Shopping Cart</li>
                 <li routerLink="/wishlist"><mat-icon>favorite</mat-icon>wishlist</li>
-                <li><mat-icon>settings</mat-icon><a href="/client-details">setting</a></li>
+                <li routerLink="/client-details"><mat-icon>settings</mat-icon>setting</li>
                 <li (click)="logout()"><mat-icon>logout</mat-icon>log out</li>
             </ul>
         </nav>
@@ -16,14 +16,14 @@
             <hr>
             <form [formGroup]="editprofileForm" (ngSubmit)="Submit_Changes()">
                 <label for="fullname">FullName</label>
-                <input type="text" formControlName="fullname" id="fullname">
+                <input type="text" formControlName="fullname" id="fullname" value="{{name.name}}">
                 <label for="email">Email Address</label>
-                <input type="email" formControlName="email" id="email">
+                <input type="email" formControlName="email" id="email" value="{{name.email}}">
                 <label for="address">Address</label>
-                <input type="text" formControlName="address" id="address">
+                <input type="text" formControlName="address" id="address" value="{{name.address}}">
                 <label for="number">Phone Number</label>
-                <input type="number" formControlName="number" id="number">
-                <button [disabled]="editprofileForm.invalid" (click)="Submit_Changes()">save changes</button>
+                <input type="text" formControlName="number" id="number" value="{{name.phoneNumber}}">
+                <button  (click)="Submit_Changes()">save changes</button>
             </form>
         </div>
         <div class="bottomform">
@@ -31,11 +31,25 @@
             <hr>
             <form [formGroup]="changepassForm" (ngSubmit)="Submit_pass()">
                 <label for="currentPassword">Current Password</label>
-                <input type="password" formControlName="currentPassword" id="currentPassword">
+                <div class="input-icon">
+                    <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
+                    <input type="password" [type]="showPassword ? 'text' : 'password'" formControlName="currentPassword"
+                        id="currentPassword">
+                </div>
+
                 <label for="pass">Password</label>
-                <input type="password" formControlName="newpass" id="pass" placeholder="8+ Characters">
+                <div class="input-icon">
+                    <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
+                    <input type="password" [type]="showPassword ? 'text' : 'password'" formControlName="newpass"
+                        id="pass" placeholder="8+ Characters">
+                </div>
+
                 <label for="confirmpass">Confirm Password</label>
-                <input type="password" formControlName="confirmpass" id="confirmpass">
+                <div class="input-icon">
+                    <mat-icon type="button" (click)="togglePasswordVisibility()" class="show">visibility</mat-icon>
+                    <input type="password" [type]="showPassword ? 'text' : 'password'" formControlName="confirmpass"
+                        id="confirmpass">
+                </div>
                 <button
                     [disabled]="changepassForm.invalid || (changepassForm.value.newpass ==! changepassForm.value.confirmpass)"
                     (click)="Submit_pass()">change password

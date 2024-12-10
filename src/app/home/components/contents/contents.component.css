@@ -17,15 +17,16 @@
     column-gap: 10px;
 }
 
-.bottom figure img {
-    width: 40px;
-    height: 40px;
+.bottom figure mat-icon {
+    scale: 100%;
 }
 
 .bottom figure figcaption {
     color: var(--custom-black);
     font-size: 14px;
+    line-height: 20px;
 }
+
 
 .top {
     display: grid;
@@ -82,12 +83,12 @@
 
 .landing .left button a {
     text-decoration: none;
-    color: white;
+    color: var(--custom-white);
 }
 
 .categories {
     margin-top: 20px;
-    margin-bottom: 50px;
+    margin-bottom: 70px;
 }
 
 .categories .title1 {
@@ -95,7 +96,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
     height: 73px;
 }
 
@@ -111,7 +112,6 @@
 .categories .cards {
     display: flex;
     justify-content: space-around;
-    /* align-items: center; */
 }
 
 .categories .cards figure {
@@ -162,31 +162,11 @@
     height: 236px;
 }
 
-.categories .cards figure .span1 {
-   
-}
-
-.categories .cards figure .span2 {
-    position: relative;
-    bottom: 10px;
-   
-}
-
-.categories .cards figure .span3 {
-    position: relative;
-   
-}
-
-.categories .cards figure .span4 {
-    position: relative;
-}
-
-.categories .cards figure .span5 {
-   
-}
-
+.categories .cards figure .span1,
+.categories .cards figure .span3,
+.categories .cards figure .span4,
 .categories .cards figure .span6 {
-   
+    margin-bottom: -12.5px;
 }
 
 .categories .cards figure figcaption {
@@ -200,19 +180,21 @@
 }
 
 .products {
-    height: 650px;
-    margin-top: 30px;
+    height: 850px;
 }
 
-.products .title {
+.products .title,
+.shops .title {
     display: flex;
     justify-content: space-between;
     align-items: center;
     background-color: var(--gray);
     height: 73px;
+    margin-bottom: 20px;
 }
 
-.products .title .pro {
+.products .title .pro,
+.shops .title .pro {
     font-size: 32px;
     line-height: 40px;
     text-transform: uppercase;
@@ -220,7 +202,8 @@
     margin-left: 50px;
 }
 
-.products .title .bro {
+.products .title .bro,
+.shops .title .bro {
     display: flex;
     align-items: center;
     column-gap: 5px;
@@ -229,5 +212,24 @@
     line-height: 34px;
     margin-right: 50px;
     font-weight: 700;
+}
 
+.products .product-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+    row-gap: 40px;
+    margin-left: 55px;
+}
+
+.shops .shops-container {
+    display: flex;
+    height: 380px;
+    column-gap: 30px;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 1230px;
+    flex-wrap: wrap;
+    margin-left: 140px;
 }

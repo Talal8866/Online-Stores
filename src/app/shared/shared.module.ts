@@ -8,8 +8,10 @@ import { RoutingModule } from '../routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatIconModule } from '@angular/material/icon'
 import { RouterModule } from '@angular/router';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { ShopCardComponent } from './components/shop-card/shop-card.component';
+import { AuthStatusService } from './services/auth-status.service';
+import { AuthInterceptor } from '../auth/services/authinterceptor.service';
 
 @NgModule({
   declarations: [
@@ -27,7 +29,6 @@ import { ShopCardComponent } from './components/shop-card/shop-card.component';
     MatIconModule,
     HttpClientModule,
     FormsModule
-    
   ],
   exports: [
     HeaderComponent,
@@ -39,6 +40,11 @@ import { ShopCardComponent } from './components/shop-card/shop-card.component';
     RouterModule,
     RoutingModule,
     FormsModule
+    ],
+    providers: [
+      AuthStatusService,
+      { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true},
+      
     ]
 })
 export class SharedModule { }

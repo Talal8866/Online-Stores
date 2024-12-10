@@ -1,0 +1,14 @@
+.img-container{
+    border: var(--dark-maincolor) 1px solid;
+    border-radius: 50%;
+    width: 180px;
+    height: 180px;
+    overflow: hidden;
+}
+
+.img-container img{
+    width: 180px;
+    height: 180px;
+    overflow: hidden;
+    cursor: pointer;
+}

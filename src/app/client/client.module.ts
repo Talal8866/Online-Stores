@@ -5,7 +5,6 @@ import { SharedModule } from '../shared/shared.module';
 import { WishlistComponent } from './components/wishlist/wishlist.component';
 
 
-
 @NgModule({
   declarations: [
     ClientDetailsComponent,

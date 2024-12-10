@@ -27,11 +27,13 @@
 .landing .left p {
     color: var(--custom-black);
     font-size: 24px;
-    line-height: 24px;
-    width: 416px;
-    height: 216px;
+    line-height: 30px;
+    width: 566px;
+    height: 303px;
     margin-top: 40px;
     margin-bottom: -20px;
+    text-align: justify;
+
 }
 
 .landing .left h1 {
@@ -90,10 +92,11 @@
 .about-us .right p {
     color: var(--custom-black);
     font-size: 24px;
-    line-height: 24px;
-    width: 416px;
-    height: 216px;
+    line-height: 30px;
+    width: 486px;
+    height: 347px;
     margin-top: 40px;
+    text-align: justify;
 }
 
 .between-title {
@@ -151,6 +154,7 @@
 .our-team .card-container .card figure figcaption {
     height: 72px;
     width: 247px;
+    text-decoration: underline;
 }
 
 .our-team .card-container .card figure figcaption+strong {
@@ -213,7 +217,7 @@ input {
     height: 56px;
 }
 
-input::placeholder{
+input::content{
     padding-left: 20px;
 }
 

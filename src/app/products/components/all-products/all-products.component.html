@@ -1,14 +1,18 @@
 <app-header></app-header>
-<div class="categories">
-    <label>ategories</label>
-    <select (change)="filtercategory($event)">
-        <option value="all" selected>All</option>
-        <option value="{{option}}" *ngFor="let option of categories">{{option}}</option>
-    </select>
-</div>
-<div class="container">
-    <div class="for" *ngFor=" let item of products">
-        <app-product [products]="item" (item)="addtocart($event)"></app-product>
+<div class="page-container">
+    <div class="categories">
+        <label>select products by Categories</label>
+        <select (change)="filtercategory($event)">
+            <option value="all" selected>All</option>
+            <option value="{{option.name}}" *ngFor="let option of categories">{{option.name}}</option>
+        </select>
+    </div>
+    <div class="container">
+        <div *ngFor="let product of products">
+            <app-product [product]="product"></app-product>
+            <a [routerLink]="['/product-details', product._id]">View
+                Details</a>
+        </div>
     </div>
 </div>
 <app-footer></app-footer>

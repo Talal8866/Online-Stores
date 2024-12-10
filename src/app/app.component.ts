@@ -7,7 +7,7 @@ import { AuthServiceService } from './auth/services/auth.service.service';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'Angular-project';
+  title = 'SoukPlus';
 
   constructor(private service: AuthServiceService) { }
 

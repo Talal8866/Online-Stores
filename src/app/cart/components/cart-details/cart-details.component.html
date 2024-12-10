@@ -5,7 +5,7 @@
             <ul>
                 <li routerLink="/cart-details"><mat-icon>shopping_cart</mat-icon>Shopping Cart</li>
                 <li routerLink="/wishlist"><mat-icon>favorite</mat-icon>wishlist</li>
-                <li><mat-icon>settings</mat-icon><a href="#settings">setting</a></li>
+                <li routerLink="/client-details"><mat-icon>settings</mat-icon>setting</li>
                 <li (click)="logout()"><mat-icon>logout</mat-icon>log out</li>
             </ul>
         </nav>
@@ -23,10 +23,10 @@
                     <li>sub-total</li>
                 </ul>
             </div>
-            <div class="products" *ngFor="let item for cart_products; let index = index">
+            <div class="products" *ngFor="let item of cart_products; let index = index">
                 <button class="cancel" (click)="deleteProduct(index)"><mat-icon>cancel</mat-icon></button>
                 <div class="img">
-                    <img src="{{item.item.img}}" alt="">
+                    <img src="{{item.item.picture}}" alt="">
                 </div>
                 <span class="title">{{item.item.title}}</span>
                 <span>{{item.item.price}} $</span>
@@ -40,7 +40,6 @@
             <hr>
             <div class="actions">
                 <button routerLink="" class="back"><mat-icon>arrow_back</mat-icon> return to shop</button>
-                <button class="update">update cart</button>
             </div>
         </div>
         <div class="totals">

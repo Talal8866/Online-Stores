@@ -1,1 +1,43 @@
-<p>wishlist works!</p>
+<app-header></app-header>
+<div class="main">
+    <aside class="left">
+        <nav>
+            <ul>
+                <li routerLink="/cart-details"><mat-icon>shopping_cart</mat-icon>Shopping Cart</li>
+                <li routerLink="/wishlist"><mat-icon>favorite</mat-icon>wishlist</li>
+                <li routerLink="/client-details"><mat-icon>settings</mat-icon>setting</li>
+                <li (click)="logout()"><mat-icon>logout</mat-icon>log out</li>
+            </ul>
+        </nav>
+    </aside>
+    <div class="right">
+        <div class="cart">
+            <div class="h1">
+                <h1>Wishlist</h1>
+            </div>
+            <div class="title-bar">
+                <ul>
+                    <li>product</li>
+                    <li>price</li>
+                    <li>stock status</li>
+                    <li>actions</li>
+                </ul>
+            </div>
+            <div class="products" *ngFor="let item of wishlist_products; let index = index">
+                <div class="img">
+                    <img src="{{item.item.pictures}}" alt="" routerLink="/product-details/{{item.id}}">
+                </div>
+                <span class="title" routerLink="/product-details/{{item.id}}">{{item.item.title}}</span>
+                <span>{{item.item.price}} $</span>
+                <div class="quantity">
+                    <span>{{item.item.availability}}</span>
+                </div>
+                <button class="cancel" (click)="add_toCart(index)">add to cart<mat-icon></mat-icon>Shopping
+                    Cart</button>
+                <button class="cancel" (click)="deleteProduct(index)"><mat-icon>cancel</mat-icon></button>
+            </div>
+            <hr>
+        </div>
+    </div>
+</div>
+<app-footer></app-footer>
